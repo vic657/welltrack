@@ -1,0 +1,29 @@
+.text-aqua {
+  color: aqua;
+}
+.btn-aqua {
+  background-color: aqua;
+  color: #000;
+}
+.btn-aqua:hover {
+  background-color: #00cccc;
+  color: #000;
+}
+.btn-outline-aqua {
+  border: 1px solid aqua;
+  color: aqua;
+}
+.btn-outline-aqua:hover {
+  background-color: aqua;
+  color: #000;
+}
+.border-aqua {
+  border: 1px solid aqua !important;
+}
+
+.bg-black {
+  background-color: #000 !important;
+}
+.border-aqua {
+  border: 1px solid aqua !important;
+}
