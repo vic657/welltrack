@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "../axios";
+import axios from "../axios"; // Token-aware axios instance
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
@@ -14,15 +14,20 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.get("/sanctum/csrf-cookie");
-      await axios.post("/api/login", form);
+      const res = await axios.post("/login", form);
+
+      // Store the token for future authenticated requests
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+
       alert("Login successful!");
       navigate("/profile");
     } catch (error) {
       alert("Login failed. Check your credentials.");
-      console.error(error);
+      console.error("Login error:", error.response?.data || error);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
