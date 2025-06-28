@@ -1,3 +1,29 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.color-empty {
+  fill: #2d2d2d;
+}
+.color-gitlab-1 {
+  fill: #1e6823;
+}
+.color-gitlab-2 {
+  fill: #44a340;
+}
+.color-gitlab-3 {
+  fill: #8cc665;
+}
+.color-gitlab-4 {
+  fill: #d6e685;
+}
+.hover-scale {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-scale:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.3);
+}
+.hover-glow:hover {
+  box-shadow: 0 0 8px #17d4ff;
+  background-color: #111;
+  transition: all 0.3s ease;
+}
+
+

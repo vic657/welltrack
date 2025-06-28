@@ -6,7 +6,7 @@ export default function Home() {
       <div className="text-center p-4" style={{ maxWidth: "600px" }}>
         <h1 className="fw-bold text-info mb-3">Welcome to WellTrack</h1>
         <p className="lead mb-4">
-          Monitor your mental and physical well-being with WellTrack — your smart health companion.
+          Monitor your mental and physical well-being with WellTrack your smart health companion.
         </p>
 
         <div className="d-flex justify-content-center gap-3">

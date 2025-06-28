@@ -1,6 +1,7 @@
 import { useState } from "react";
-import axios from "../axios"; // Token-aware axios instance
+import axios from "../axios";
 import { useNavigate } from "react-router-dom";
+import HomeButton from "../Components/HomeButton";
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -14,9 +15,8 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post("/login", form);
+      const res = await axios.post("/api/login", form);
 
-      // Store the token for future authenticated requests
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
 
@@ -58,10 +58,17 @@ export default function Login() {
                 onChange={handleChange}
               />
             </div>
-            <button type="submit" className="btn btn-info w-100" disabled={loading}>
+            <button
+              type="submit"
+              className="btn btn-info w-100"
+              disabled={loading}
+            >
               {loading ? "Logging in..." : "Login"}
             </button>
           </form>
+
+          {/*  Home Button */}
+          <HomeButton />
         </div>
       </div>
     </div>

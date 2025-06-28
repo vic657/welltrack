@@ -1,9 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\File;
 
 Route::get('/', function () {
-    return view('welcome');
+    return File::get(public_path('index.html'));
 });
-Route::post('/login', [AuthController::class, 'login']);
 
+Route::get('/{any}', function () {
+    return File::get(public_path('index.html'));
+})->where('any', '.*');

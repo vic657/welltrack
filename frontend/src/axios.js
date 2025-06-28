@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:8000/api", // Target Laravel API routes
+  baseURL: "/api", // Target Laravel API routes
 });
 
 // Add Authorization header with token from localStorage

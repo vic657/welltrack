@@ -1,5 +1,9 @@
 import { useState } from "react";
-import axios from "../axios"; // your axios config
+import axios from "../axios"; // Custom axios instance
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import HomeButton from "../Components/HomeButton";
+
 
 export default function Register() {
   const [form, setForm] = useState({
@@ -10,6 +14,7 @@ export default function Register() {
   });
 
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -18,10 +23,23 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
     try {
-      await axios.get("/sanctum/csrf-cookie");
       const res = await axios.post("/api/register", form);
-      alert("Registered successfully!");
+
+      const token = res.data.token;
+      const user = res.data.user;
+
+      if (token) {
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
+        alert("Registered successfully!");
+
+        // Redirect after successful registration
+        navigate("/profile");
+      } else {
+        alert("Registered, but token missing.");
+      }
     } catch (error) {
       const errors = error.response?.data?.errors;
       if (errors) {
@@ -30,6 +48,7 @@ export default function Register() {
         alert("Registration failed.");
       }
     }
+
     setLoading(false);
   };
 
@@ -49,7 +68,9 @@ export default function Register() {
                 name="name"
                 type="text"
                 className="form-control bg-dark text-white border-0"
+                value={form.name}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="mb-3">
@@ -58,7 +79,9 @@ export default function Register() {
                 name="email"
                 type="email"
                 className="form-control bg-dark text-white border-0"
+                value={form.email}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="mb-3">
@@ -67,7 +90,9 @@ export default function Register() {
                 name="password"
                 type="password"
                 className="form-control bg-dark text-white border-0"
+                value={form.password}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="mb-3">
@@ -76,7 +101,9 @@ export default function Register() {
                 name="password_confirmation"
                 type="password"
                 className="form-control bg-dark text-white border-0"
+                value={form.password_confirmation}
                 onChange={handleChange}
+                required
               />
             </div>
             <button
@@ -87,8 +114,11 @@ export default function Register() {
               {loading ? "Registering..." : "Register"}
             </button>
           </form>
+          {/*  Home Button */}
+                    <HomeButton />
         </div>
       </div>
     </div>
   );
 }
+
