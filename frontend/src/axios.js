@@ -2,10 +2,10 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "/api", // Target Laravel API routes
+  baseURL: "http://127.0.0.1:8000", // Full backend API base
+  withCredentials: true, // Only if you're using Sanctum with cookies
 });
 
-// Add Authorization header with token from localStorage
 instance.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {

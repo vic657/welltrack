@@ -1,9 +1,8 @@
 import { useState } from "react";
-import axios from "../axios"; // Custom axios instance
+import axios from "../axios"; // Make sure this points to your configured axios instance
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import HomeButton from "../Components/HomeButton";
-
 
 export default function Register() {
   const [form, setForm] = useState({
@@ -25,7 +24,12 @@ export default function Register() {
     setLoading(true);
 
     try {
-      const res = await axios.post("/register", form);
+      const res = await axios.post("http://127.0.0.1:8000/api/register", {
+        name: form.name,
+        email: form.email,
+        password: form.password,
+        password_confirmation: form.password_confirmation,
+      });
 
       const token = res.data.token;
       const user = res.data.user;
@@ -34,9 +38,7 @@ export default function Register() {
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
         alert("Registered successfully!");
-
-        // Redirect after successful registration
-        navigate("/profile");
+        navigate("/profile"); // ✅ Make sure /profile route exists
       } else {
         alert("Registered, but token missing.");
       }
@@ -45,7 +47,7 @@ export default function Register() {
       if (errors) {
         alert(Object.values(errors).flat().join("\n"));
       } else {
-        alert("Registration failed.");
+        alert("Registration failed. Please try again.");
       }
     }
 
@@ -114,11 +116,19 @@ export default function Register() {
               {loading ? "Registering..." : "Register"}
             </button>
           </form>
-          {/*  Home Button */}
-                    <HomeButton />
+
+          <div className="text-center mt-3">
+            <p>
+              Already have an account?{" "}
+              <Link to="/login" className="text-info">
+                Login
+              </Link>
+            </p>
+          </div>
+
+          <HomeButton />
         </div>
       </div>
     </div>
   );
 }
-
