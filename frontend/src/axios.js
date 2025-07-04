@@ -2,8 +2,8 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://127.0.0.1:8000", // Full backend API base
-  withCredentials: true, // Only if you're using Sanctum with cookies
+  baseURL: "https://welltrack-production.up.railway.app/api",
+  withCredentials: true, 
 });
 
 instance.interceptors.request.use((config) => {
