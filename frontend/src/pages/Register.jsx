@@ -25,7 +25,7 @@ export default function Register() {
     setLoading(true);
 
     try {
-      const res = await axios.post("/api/register", form);
+      const res = await axios.post("/register", form);
 
       const token = res.data.token;
       const user = res.data.user;
