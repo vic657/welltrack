@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 // Serve React index.html for the root
 Route::get('/', function () {
-    return File::get(public_path('index.html'));
+    return 'App is running!';
 });
 
 // Catch-all route to serve React frontend for any route
