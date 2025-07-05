@@ -13,15 +13,15 @@ export default function WeeklySummary() {
   const [hasLog, setHasLog] = useState(null);
 
   useEffect(() => {
-    axios.get("/api/daily-logs/week")
+    axios.get("/daily-logs/week")
       .then(res => setLogs(res.data))
       .catch(err => console.error("Logs fetch error", err));
 
-    axios.get("/api/weekly-tips")
+    axios.get("/weekly-tips")
       .then(res => setTips(res.data.tips))
       .catch(err => console.error("Tips fetch error", err));
 
-    axios.get("/api/daily-log/check-today")
+    axios.get("/daily-log/check-today")
       .then(res => setHasLog(res.data.hasLog))
       .catch(err => console.error("Reminder check error", err));
   }, []);
