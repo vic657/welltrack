@@ -3,18 +3,38 @@ import { Link } from "react-router-dom";
 import axios from "../axios";
 import BackButton from "../Components/BackButton";
 
-
 import {
-  LineChart, Line, XAxis, YAxis, Tooltip, Legend, CartesianGrid, ResponsiveContainer,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  CartesianGrid,
+  ResponsiveContainer,
 } from "recharts";
 
 export default function WeeklyTrends() {
   const [logs, setLogs] = useState([]);
 
   useEffect(() => {
-    axios.get("/api/daily-logs/week")
-      .then(res => setLogs(res.data))
-      .catch(err => console.error("Error fetching logs", err));
+    axios
+      .get("/api/daily-logs/week")
+      .then((res) => {
+        // Log for debugging
+        console.log("Logs response:", res.data);
+
+        // Handle different response formats gracefully
+        if (Array.isArray(res.data)) {
+          setLogs(res.data);
+        } else if (Array.isArray(res.data?.data)) {
+          setLogs(res.data.data);
+        } else {
+          console.warn("Unexpected response format:", res.data);
+          setLogs([]); // Fallback to empty array
+        }
+      })
+      .catch((err) => console.error("Error fetching logs", err));
   }, []);
 
   const moodToScore = (mood) => {
@@ -24,15 +44,18 @@ export default function WeeklyTrends() {
     return 0;
   };
 
-  const chartData = logs.map(log => ({
-    ...log,
-    mood_score: moodToScore(log.mood),
-  }));
+  const chartData = Array.isArray(logs)
+    ? logs.map((log) => ({
+        ...log,
+        mood_score: moodToScore(log.mood),
+      }))
+    : [];
 
   return (
     <div className="container py-5 text-white">
-      <h2 className="mb-4 text-info"> Weekly Health Trends</h2>
+      <h2 className="mb-4 text-info">Weekly Health Trends</h2>
 
+      {/* Sleep Hours Chart */}
       <div className="mb-5">
         <h5 className="text-light">Sleep Hours</h5>
         <ResponsiveContainer width="100%" height={300}>
@@ -47,6 +70,7 @@ export default function WeeklyTrends() {
         </ResponsiveContainer>
       </div>
 
+      {/* Water Intake Chart */}
       <div className="mb-5">
         <h5 className="text-light">Water Intake (cups)</h5>
         <ResponsiveContainer width="100%" height={300}>
@@ -61,6 +85,7 @@ export default function WeeklyTrends() {
         </ResponsiveContainer>
       </div>
 
+      {/* Mood Score Chart */}
       <div className="mb-5">
         <h5 className="text-light">Mood Score</h5>
         <ResponsiveContainer width="100%" height={300}>
@@ -76,8 +101,6 @@ export default function WeeklyTrends() {
       </div>
 
       <BackButton />
-
     </div>
-    
   );
 }
