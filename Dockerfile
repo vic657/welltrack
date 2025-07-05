@@ -20,6 +20,8 @@ RUN composer install --no-dev --optimize-autoloader
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
-EXPOSE 8080
+ENV PORT=8080
+EXPOSE ${PORT}
+
 
 ENTRYPOINT ["/start.sh"]
