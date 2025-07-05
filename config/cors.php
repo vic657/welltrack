@@ -6,7 +6,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['https://welltrack-production.up.railway.app'],
+    'allowed_origins' => ['https://welltrack-production.up.railway.app','https://welltrack.netlify.app'],
 
     'allowed_origins_patterns' => [],
 
