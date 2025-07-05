@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "../axios";
-import BackButton from "../components/BackButton";
+import BackButton from "../Components/BackButton";
 import { Link } from "react-router-dom";
 
 import {
