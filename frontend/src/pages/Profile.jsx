@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import "./profile.css";
 import Navbar from "../Components/Navbar";
-import Reminder from '../components/Reminder';
+import Reminder from '../Components/Reminder';
 import StreakTracker from '../Components/StreakTracker';
 import CheckInHeatmap from "../Components/CheckInHeatmap";
 
