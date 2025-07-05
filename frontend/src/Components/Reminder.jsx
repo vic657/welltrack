@@ -5,7 +5,7 @@ export default function Reminder() {
   const [hasLog, setHasLog] = useState(null);
 
   useEffect(() => {
-    axios.get("/api/daily-log/check-today")
+    axios.get("/daily-log/check-today")
       .then(res => setHasLog(res.data.hasLog))
       .catch(err => console.error("Reminder check failed", err));
   }, []);
