@@ -23,16 +23,13 @@ export default function Register() {
     e.preventDefault();
     setLoading(true);
 
-    try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/register`,
-        {
-          name: form.name,
-          email: form.email,
-          password: form.password,
-          password_confirmation: form.password_confirmation,
-        }
-      );
+   try {
+  const res = await axios.post("/register", {
+    name: form.name,
+    email: form.email,
+    password: form.password,
+    password_confirmation: form.password_confirmation,
+  });
 
       const token = res.data.token;
       const user = res.data.user;
