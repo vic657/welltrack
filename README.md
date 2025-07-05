@@ -16,7 +16,7 @@ WellTrack is a full-stack web application built with Laravel (backend API) and R
 Check out the deployed app here:  
 🔗 [https://welltrack.netlify.app/profile](https://welltrack.netlify.app/profile)
 
-## 📦 Tech Stack
+##  Tech Stack
 
 - **Frontend**: React + Vite
 - **Backend**: Laravel (API-first architecture)
@@ -44,14 +44,14 @@ Ensure the following `.env` values are configured for production:
 
 This project comes Docker-ready. Use the provided Dockerfiles and `docker-compose.yml` to spin up the app locally for development or staging.
 
-## 🛠️ Setup & Deployment Scripts
+##  Setup & Deployment Scripts
 
 Scripts are available to automate builds and deployment for both Netlify (frontend) and Railway (backend).
 
-## 📬 Feedback
+## Feedback
 
 Have suggestions or spotted an issue? PRs and feedback welcome!
 
 ---
 
-Let me know if you want this exported as a file, or if you'd like to include additional sections like API endpoints or authentication flow. We could even add badges, visuals, or deployment notes for Netlify and Railway.
+copyright vicmass@2025
