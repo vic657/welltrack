@@ -27,7 +27,7 @@ export default function DailyCheckIn() {
     setMessage("");
 
     try {
-      await axios.post("/api/daily-log", form);
+      await axios.post("/daily-log", form);
       setMessage("Check-in submitted successfully!");
     } catch (error) {
       console.error(error);
