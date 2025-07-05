@@ -19,7 +19,7 @@ export default function WeeklyTrends() {
 
   useEffect(() => {
     axios
-      .get("/api/daily-logs/week")
+      .get("/daily-logs/week")
       .then((res) => {
         // Log for debugging
         console.log("Logs response:", res.data);
