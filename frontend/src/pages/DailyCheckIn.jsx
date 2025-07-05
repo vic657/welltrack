@@ -62,7 +62,7 @@ export default function DailyCheckIn() {
               className="form-control"
               value={form.sleep_hours}
               onChange={handleChange}
-              placeholder="e.g. 7"
+              placeholder="hours of sleep"
             />
           </div>
 
@@ -74,7 +74,7 @@ export default function DailyCheckIn() {
               className="form-control"
               value={form.water_intake}
               onChange={handleChange}
-              placeholder="e.g. 6"
+              placeholder="number of cups"
             />
           </div>
 
