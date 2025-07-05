@@ -7,7 +7,7 @@ export default function StreakTracker() {
   const [longestStreak, setLongestStreak] = useState(null);
 
   useEffect(() => {
-    axios.get("/api/daily-log/streak")
+    axios.get("/daily-log/streak")
       .then(res => {
         setStreak(res.data.streak);
         setLastBroken(res.data.last_broken);
